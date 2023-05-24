@@ -1,0 +1,38 @@
+Goal: To develope a Role Playing Game(RPG) controlled by the user via the console. the Character is the protagonist of the game. 
+
+------ Class Overview -----
+
+1. Character(name, health, coins, inventory) - 
+
+The Character/Human class should be defined with the private parameters. 
+
+Purchase() - navigate through 'item' in shop. Select one then buy. If enough 'coins' then buy and add to inventory. The 'item' should be reduced from 'shop stock'. This should add to characters 'inventory'
+
+Attack(obj) - Attack enemy 'obj'. if 'item' of type 'Weapon' avlb in inventory then you can proceed with the attack. use the 'obj's damage method to cause damage, the weapon item used will cause that amount of damage. After damage, the 'Weapon' item's durablity should degrade. if 0 remove the item.
+
+TakeDamage(val) - health will be reduced by val amount. This function should be exposed to the entity causing damage, since the 'health' param/attribute is private.
+
+
+2. Enemy(name, health) -
+The 2 types of enemies are Zombie(150 health, 30 damage) and Vampire(200 health, 70 damage)
+Attack() to attack human. TakeDamage() will be exposed, as the health attribute is private.(i.e. direct change or update to the object's health attribute should not be allowed)
+
+
+3. Tools(price, damage caused, durability):
+  Tools can be of type 'gadgets', 'utensils', 'weapons', 'med kit'.'Knife'(50 price, deals 100 damage) and 'Axe'(99 price, deals 150 damage) are weapons. After each use the durability of tools should be reduced, design a func for the same.
+
+4. Shop(Composed of Items): a list of (quantity, items). Implement restock function. Restock(val, obj) should accept value and tool(object) to be restocked from human, if sufficient value is given, the tool should be restocked. 
+
+
+---- Development Guide ---
+
+- Develop classes as per above definitions.
+- Run a day and night swap loop. 5mins day, 5mins night.
+- Spawn enemies at night. Enemies will deal constant damage per minute. Human has to kill enemies to surview. 
+- After death of an enemy, coins will be added to the human's a/c. 
+- If user doesn't kill enemy and survives damage, no coins will be added. the enemies will disappear in the day, if not killed.
+- The user may purchase 'med kit' to heal
+- Goal will be maximize coins and buy the 'sword' till the 3rd night to kill the boss.
+- Spawn the boss Dracula on the 3rd night. If Human survives, Declare 'Winner'. End Game.
+
+- Buying from shop should be allowed only during the day.
