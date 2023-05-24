@@ -4,13 +4,13 @@ Goal: To develope a Role Playing Game(RPG) controlled by the user via the consol
 
 1. Character(name, health, coins, inventory) - 
 
-   The Character/Human class should be defined with the private parameters. 
+   The Character/Human class should be defined with the private attributes mentioned above(name, health,..). 
    
    Following are the methods for Human,
    
-   Purchase() - navigate through 'item' in shop. Select one then buy. If enough 'coins' then buy and add to inventory. The 'item' should be reduced from 'shop stock'. This should add to characters 'inventory'
+   Purchase() - navigate through 'item' in Shop. Select one then buy. If enough 'coins' then buy and add to inventory. The 'item' should be reduced from 'shop stock'. The item should be added to Human's 'inventory'
 
-   Attack(obj) - Attack enemy 'obj'. if 'item' of type 'Weapon' avlb in inventory then you can proceed with the attack. use the 'obj's damage method to cause damage, the weapon item used will cause that amount of damage. After damage, the 'Weapon' item's durablity should degrade. if 0 remove the item.
+   Attack(obj) - Takes a parameter 'obj', which is an Enemy object. Attack enemy 'obj'. if 'item' of type 'Weapon' avlb in inventory then you can proceed with the attack. use the 'obj's Takedamage method to cause damage. The weapon Item used from Inventory will cause that amount of damage. After damage, the 'Weapon' item's durablity should degrade. if 0 remove the Item from Inventory.
 
    TakeDamage(val) - health will be reduced by val amount. This function should be exposed to the entity causing damage, since the 'health' param/attribute is private.
 
