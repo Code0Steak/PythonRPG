@@ -46,7 +46,7 @@ python3 test.py //in your termial
    
   The folders contain the respective class definations.
 
-## Development Guide
+## Development Overview
 The Game will be developed as per below instructions.
 
 | Development Item     | Status |
