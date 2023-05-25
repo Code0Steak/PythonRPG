@@ -44,6 +44,12 @@ class Human:
         print(f'Unsufficient balance to purchase {weaponDict[id][0]}')
         return
 
+      #check if item already present
+      for obj in self.inventory:
+        if obj.name == weaponDict[id][0]:
+          print("{} already present in Inventory")
+          return
+
       #item is available and also sufficient balance, hence
       shop.stock[id] -= 1 #reduce frm stock
       #add new Tool() to inventory. 
@@ -60,27 +66,51 @@ class Human:
       if self.coins < healPrice:
         print('Unsufficient coins to purchase healing/medkit')
         return
-        
+      
+      #check if Heal already present
+      for obj in self.inventory:
+        if obj.name == weaponDict[id][0]:
+          print('Heal item already present')
+          return
+
       self.inventory.append(Tool(id, 'Medkit', 'Heal'))
 
 
   def Attack(self, obj ):
     if len(self.inventory) != 0:
-      #find weapon in inventory and then use it
-      for i in self.inventory:
-        if i.type == 'Weapon' :
-          
-          #the following operation should not be permitted
-          #obj.health -= i.damage , instead use the func TakeDamage
-          #variables are yet to be declared as private
-          obj.TakeDamage(i.damageCaused) #cause damage using weapon
-          if obj.health == 0:
-            print(obj.type + ' was killed')
-          return #return from Attack func once weapon is used
-      print('No weapon in inventory, cannot attack.')
+      #make a list of indices of weapons present in inventory 
+      weapons = []
+      i = 0
+      for ob in self.inventory:
+        if ob.type == 'Weapon':
+          weapons.append(i) 
+        i += 1
+      
+      if len(weapons) == 0:
+        print('No Weapons available in inventory. Better purchase them from Shop.')
+        return 
+      
+      print('Pick a weapon')
+      i = 0
+      for ind in weapons:
+        print(ind,f': {self.inventory[ind].name}')
+      
+      id = int(input('Choice: '))
+      if id < 0 or id > len(self.inventory):
+        print('Invalid choice.')
+        return 
+      if self.inventory[id].type != 'Weapon':
+        print('Not a weapon. Please select a weapon from the given choices')
+        return 
+      
+      #finally you have the id of the weapon chosen 
+      #attack using the weapon
+      obj.TakeDamage(self.inventory[id].damage)
+      self.inventory[id].durability -= 1 #reduce durability because of 1 hit.
+      
     else:
       print('No weapon in inventory, cannot attack.')
-
+   
   def TakeDamage(self, val):
     self.health -= val
     if self.health == 0:
