@@ -7,7 +7,7 @@
 weaponDict = {
   0: ('Knife',50, 100, 4),
   1: ('Axe',90, 150, 10),
-  2: ('Sword',200, 350, 10)
+  2: ('Sword',200, 350, 2)
 }
 
 class Tool:

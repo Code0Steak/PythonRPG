@@ -20,7 +20,7 @@ class Zombie(Enemy):
   def __init__(self,name):
     super().__init__(name)
     self.type = 'Zombie'
-    self.health = 150
+    self.health = 250
 
   def Attack(self, obj):
     obj.TakeDamage(30)  #Zombie attacks lead to -30 health
@@ -32,7 +32,7 @@ class Vampire(Enemy):
   def __init__(self, name):
     super().__init__(name)
     self.type = 'Vampire'
-    self.health = 200
+    self.health = 950
 
   def Attack(self, obj):
     obj.TakeDamage(70)  #Vampires attacks are lethal
