@@ -107,6 +107,13 @@ class Human:
       #attack using the weapon
       obj.TakeDamage(self.inventory[id].damage)
       self.inventory[id].durability -= 1 #reduce durability because of 1 hit.
+      if obj.getHealth() == 0:
+        if obj.type == 'Zombie':
+          self.coins += 50 #earn 50 by killing zombie 
+          print('You earned 50 coins by slaying the Zombie')
+        elif obj.type == 'Vampire':
+          self.coins += 300
+          print('You earned 300 coins by slaying the Vampire')
       
     else:
       print('No weapon in inventory, cannot attack.')
@@ -115,3 +122,18 @@ class Human:
     self.health -= val
     if self.health == 0:
       print( self.name + " was slaid.")
+
+  def Restock(self, shop):
+    print('Select item to restock:-')
+    for i in range(3):
+      print(f'{i}: {weaponDict[i][0]}, price: {weaponDict[i][1]}')
+    
+    print(f'{3}: Heal, price: 100')
+
+    id = int(input('Restock selection: '))
+    if id < 0 or id > 3:
+      print('Invalid selection')
+      return 
+    
+    shop.stock[id] += 1 
+    print('The item has been restocked.')
