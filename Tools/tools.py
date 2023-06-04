@@ -17,9 +17,9 @@ class Tool:
     self.name = name 
     self.type = typ
     if self.type == 'Weapon':
-      self.price = weaponDict[self.name][1]
-      self.damage = weaponDict[self.name][2]
-      self.durability = weaponDict[self.name][3]
+      self.price = weaponDict[self.id][1]
+      self.damage = weaponDict[self.id][2]
+      self.durability = weaponDict[self.id][3]
     if self.type == 'Heal':
       self.price = 100 #price for medkit
 

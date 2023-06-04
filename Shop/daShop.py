@@ -1,4 +1,3 @@
-from Tools.tools import Knife, Axe
 
 class Shop:
   def __init__(self, name):

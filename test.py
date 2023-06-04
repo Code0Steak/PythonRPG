@@ -1,22 +1,35 @@
 from Character.human import Human
-from Enemy.enemy import Zombie
-from Tools.tools import Axe, Knife
 
-h1 = Human('Ameya')
-z1 = Zombie('Zodd')
-
-#zombie attacks h1
-z1.Attack(h1)
-#check damage
-print(h1.health)
-
-h1.Purchase(Knife())
-print(h1.inventory)  #check inventory after purchase
+if __name__ == '__main__':
+  print('GAME STARTS...\n\n')
+  _username = input('Type in a Username: ')
+  player = Human(_username)
+  print(f'\n\nCharacter {player.name} created. Some Game Variables declared...')
 
 
-round = 0
-#use of health param, as it is should not be allowed. The below should not be permitted, health is to be declared as private yet.
-while z1.health >= 0:
-  round += 1
-  h1.Attack(z1)
-print(f'Killed in {round} rounds')
+
+
+# from Tools.tools import Tool
+# from Character.human import Human
+# from Shop.daShop import Shop
+# from Enemy.enemy import Zombie
+
+# kni = Tool(0,'Knife','Weapon')
+# axe = Tool(1, 'Axe', 'Weapon')
+# sword = Tool(2, 'Sword', 'Weapon')
+# h = Tool(3, 'Heal', 'Heal')
+
+# print(kni,axe,sword,h)
+
+# amy = Human('Ameya')
+# sh = Shop('7/11')
+# print('Coins :', amy.coins)
+# amy.PurchaseFromShop(sh)
+# print('Coins: ',amy.coins,' Inventory: ',amy.inventory)
+# zom = Zombie('Zom')
+# zom.Attack(amy)
+# amy.Attack(zom)
+# print('Zom and Amy healths after attack resp.',zom.health,amy.health)
+
+# amy.Restock(sh)
+# print('Effect after restocking ', sh.stock)

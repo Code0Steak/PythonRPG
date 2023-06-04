@@ -14,6 +14,9 @@ class Enemy:
     if self.health == 0:
       print(self.name + ' was slayed.')
   
+  def getHealth(self):
+    return self.health
+  
 
 class Zombie(Enemy):
 
@@ -24,8 +27,7 @@ class Zombie(Enemy):
 
   def Attack(self, obj):
     obj.TakeDamage(30)  #Zombie attacks lead to -30 health
-
-
+  
 
 class Vampire(Enemy):
 

@@ -17,13 +17,13 @@ class Human:
       the cost should be paid to the shop
       i.e. the amount shoud be reflected in the shop a/c but currently there is no provision for that.
       '''
- 
+    
     else:
       print('Not eough credits')
 
   def PurchaseFromShop(self,shop):
 
-    id = int(input('Please make a selection. 0 : Knife, 1 : Axe, 2 : Sword, 3: Medkit')) #select from prompt
+    id = int(input('Please make a selection. 0 : Knife, 1 : Axe, 2 : Sword, 3: Medkit --> ')) #select from prompt
     #basic validation check for id
     if id < 0 or id > 3:
       print('Invalid selection')
@@ -52,6 +52,7 @@ class Human:
 
       #item is available and also sufficient balance, hence
       shop.stock[id] -= 1 #reduce frm stock
+      self.coins -= weaponDict[id][1] #deduct
       #add new Tool() to inventory. 
       self.inventory.append(Tool(id,weaponDict[id][0],'Weapon'))
 
@@ -74,6 +75,7 @@ class Human:
           return
 
       self.inventory.append(Tool(id, 'Medkit', 'Heal'))
+      self.coins -= weaponDict[id][1]#deduct
 
 
   def Attack(self, obj ):
@@ -90,7 +92,7 @@ class Human:
         print('No Weapons available in inventory. Better purchase them from Shop.')
         return 
       
-      print('Pick a weapon')
+      print(f'(Instruction for {self.name}:) Pick a weapon to Fight')
       i = 0
       for ind in weapons:
         print(ind,f': {self.inventory[ind].name}')
@@ -121,7 +123,7 @@ class Human:
   def TakeDamage(self, val):
     self.health -= val
     if self.health == 0:
-      print( self.name + " was slaid.")
+      print( self.name + " was slaid")
 
   def Restock(self, shop):
     print('Select item to restock:-')
