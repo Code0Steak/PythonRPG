@@ -1,5 +1,7 @@
 from Tools.tools import Tool, weaponDict, healPrice
 
+from prettytable import PrettyTable
+
 class Human:
 
   def __init__(self,name):
@@ -8,22 +10,26 @@ class Human:
     self.coins = 1000
     self.inventory = []
 
-  #test method this will be removed
-  def Purchase(self, item):
-    if item.price <= self.coins:
-      self.inventory.append(item)
-      self.coins -= item.price 
-      '''
-      the cost should be paid to the shop
-      i.e. the amount shoud be reflected in the shop a/c but currently there is no provision for that.
-      '''
-    
-    else:
-      print('Not eough credits')
 
   def PurchaseFromShop(self,shop):
 
-    id = int(input('Please make a selection. 0 : Knife, 1 : Axe, 2 : Sword, 3: Medkit --> ')) #select from prompt
+    #menu options for shop
+    table = PrettyTable()
+    
+    table.field_names = ['Item','Price','Selection Key']
+    table.add_rows([
+      [f'{shop.items[0]}',f'{weaponDict[0][1]}','0'],
+      [f'{shop.items[1]}',f'{weaponDict[1][1]}','1'],
+      [f'{shop.items[2]}',f'{weaponDict[2][1]}','2'],
+      [f'{shop.items[3]}',f'{healPrice}','3']
+    ])
+
+    table.border = True 
+    table.header_style = "upper"
+    table.align = "l"
+
+    print(table)
+    id = int(input('Enter Selection Key for the Item you want to purchase: ')) #select from prompt
     #basic validation check for id
     if id < 0 or id > 3:
       print('Invalid selection')
@@ -139,3 +145,18 @@ class Human:
     
     shop.stock[id] += 1 
     print('The item has been restocked.')
+  
+  def healSelf():
+    
+    ind = 0
+    for ob in self.inventory:
+      if ob.type == 'Heal':
+        self.health += ob.healVal
+        if self.health > 100:
+          self.health = 100
+        del self.inventory[ind]
+        return
+      ind += 1
+    
+    print('No Heal item in Inventory')
+        

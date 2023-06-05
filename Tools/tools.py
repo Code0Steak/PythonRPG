@@ -22,6 +22,7 @@ class Tool:
       self.durability = weaponDict[self.id][3]
     if self.type == 'Heal':
       self.price = 100 #price for medkit
+      self.healVal = 25
 
 
 
