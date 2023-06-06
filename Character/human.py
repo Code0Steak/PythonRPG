@@ -12,7 +12,8 @@ class Human:
 
 
   def PurchaseFromShop(self,shop):
-
+    print()
+    print(f'Current Coin balance: {self.coins} units')
     #menu options for shop
     table = PrettyTable()
     
@@ -27,12 +28,15 @@ class Human:
     table.border = True 
     table.header_style = "upper"
     table.align = "l"
-
+    table.border = True 
+    table.header_style = "upper"
+    table.align = "l"
     print(table)
     id = int(input('Enter Selection Key for the Item you want to purchase: ')) #select from prompt
     #basic validation check for id
     if id < 0 or id > 3:
       print('Invalid selection')
+      print()
       return 
     
 
@@ -43,17 +47,20 @@ class Human:
     #check if item in shop's stock
       if shop.stock[id] == 0:
         print(f'{weaponDict[id][0]} is unavailable, please opt for restock')
+        print()
         return 
 
       #check if payable
       if self.coins < weaponDict[id][1]:
         print(f'Unsufficient balance to purchase {weaponDict[id][0]}')
+        print()
         return
 
       #check if item already present
       for obj in self.inventory:
         if obj.name == weaponDict[id][0]:
-          print("{} already present in Inventory")
+          print(f"{obj.name} already present in Inventory")
+          print()
           return
 
       #item is available and also sufficient balance, hence
@@ -61,27 +68,35 @@ class Human:
       self.coins -= weaponDict[id][1] #deduct
       #add new Tool() to inventory. 
       self.inventory.append(Tool(id,weaponDict[id][0],'Weapon'))
-
+      print()
+      print(f'Item {self.inventory[len(self.inventory) - 1].name} purchased. Current Coin balance : {self.coins} units')
+      print()
     # if shop.stock[id] == 0:
     #   print('Item unavailable in stock')
     #   return
     else:
       if shop.stock[id] == 0:
         print('Heal item unavailable. Please opt for restocking')
+        print()
         return 
 
       if self.coins < healPrice:
         print('Unsufficient coins to purchase healing/medkit')
+        print()
         return
       
       #check if Heal already present
       for obj in self.inventory:
         if obj.name == weaponDict[id][0]:
           print('Heal item already present')
+          print()
           return
 
       self.inventory.append(Tool(id, 'Medkit', 'Heal'))
+      print()
       self.coins -= weaponDict[id][1]#deduct
+      print(f'Item {self.inventory[len(self.inventory) - 1].name} purchased. Current Coin balance : {self.coins} units')
+      print()
 
 
   def Attack(self, obj ):
@@ -95,26 +110,36 @@ class Human:
         i += 1
       
       if len(weapons) == 0:
-        print('No Weapons available in inventory. Better purchase them from Shop.')
+        print('No Weapons available in inventory. Better purchase them from the Shop 🏬')
         return 
       
       print(f'(Instruction for {self.name}:) Pick a weapon to Fight')
-      i = 0
-      for ind in weapons:
-        print(ind,f': {self.inventory[ind].name}')
       
-      id = int(input('Choice: '))
+      table = PrettyTable()
+      table.field_names = [i for i in range(len(weapons))]
+
+      table.add_row([self.inventory[i].name for i in weapons ])
+      print(table)
+      
+      id = int(input('Select weapon by key from above table: '))
       if id < 0 or id > len(self.inventory):
-        print('Invalid choice.')
+        print('Invalid selection.')
+        print()
         return 
       if self.inventory[id].type != 'Weapon':
         print('Not a weapon. Please select a weapon from the given choices')
+        print()
         return 
       
       #finally you have the id of the weapon chosen 
       #attack using the weapon
       obj.TakeDamage(self.inventory[id].damage)
+      print(f'{self.name} vs {obj.name}. You dealt {self.inventory[id].damage} damage.')
       self.inventory[id].durability -= 1 #reduce durability because of 1 hit.
+      if self.inventory[id].durability <= 0:
+        print(f'Uh, oh. Your {self.inventory[id].name} is no longer usable!! It served you well 🙏')
+        del self.inventory[id] #delete item if destroyed.
+
       if obj.getHealth() == 0:
         if obj.type == 'Zombie':
           self.coins += 50 #earn 50 by killing zombie 

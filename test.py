@@ -64,15 +64,21 @@
   
 
 
-  # 
 from Character.human import Human
 from Shop.daShop import Shop
-
+from Enemy.enemy import Zombie
 
 h = Human('name')
 sh = Shop('711')
+z = Zombie('Zodd 🧟‍♂️')
 h.PurchaseFromShop(sh)
-    
+z.Attack(h)
+h.Attack(z)
+h.Attack(z)
+h.Attack(z)
+h.Attack(z)
+h.Attack(z)
+
  
 
 
