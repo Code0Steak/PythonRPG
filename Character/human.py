@@ -100,6 +100,7 @@ class Human:
 
 
   def Attack(self, obj ):
+    print()
     if len(self.inventory) != 0:
       #make a list of indices of weapons present in inventory 
       weapons = []
@@ -111,6 +112,7 @@ class Human:
       
       if len(weapons) == 0:
         print('No Weapons available in inventory. Better purchase them from the Shop 🏬')
+        print()
         return 
       
       print(f'(Instruction for {self.name}:) Pick a weapon to Fight')
@@ -137,16 +139,22 @@ class Human:
       print(f'{self.name} vs {obj.name}. You dealt {self.inventory[id].damage} damage.')
       self.inventory[id].durability -= 1 #reduce durability because of 1 hit.
       if self.inventory[id].durability <= 0:
+        print(".")
+        print(".")
+        print(".")
         print(f'Uh, oh. Your {self.inventory[id].name} is no longer usable!! It served you well 🙏')
+        print()
         del self.inventory[id] #delete item if destroyed.
 
-      if obj.getHealth() == 0:
+      if obj.getHealth() <= 0:
         if obj.type == 'Zombie':
-          self.coins += 50 #earn 50 by killing zombie 
-          print('You earned 50 coins by slaying the Zombie')
+          self.coins += obj.getDropCoins() #earn 50 by killing zombie 
+          print()
+          print(f'You earned {obj.getDropCoins()} coins by slaying the Zombie')
         elif obj.type == 'Vampire':
-          self.coins += 300
-          print('You earned 300 coins by slaying the Vampire')
+          self.coins += obj.getDropCoins()
+          print()
+          print(f'You earned {obj.getDropCoins()} coins by slaying the Vampire')
       
     else:
       print('No weapon in inventory, cannot attack.')
@@ -184,4 +192,7 @@ class Human:
       ind += 1
     
     print('No Heal item in Inventory')
+
+  def getHealth(self):
+    return self.health
         
