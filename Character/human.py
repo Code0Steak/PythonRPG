@@ -9,10 +9,12 @@ class Human:
     self.health = 100
     self.coins = 1000
     self.inventory = []
-
+    
 
   def PurchaseFromShop(self,shop):
     print()
+    print(f'Welcome to {shop.name}\n')
+
     print(f'Current Coin balance: {self.coins} units')
     #menu options for shop
     table = PrettyTable()
@@ -86,15 +88,15 @@ class Human:
         return
       
       #check if Heal already present
-      for obj in self.inventory:
-        if obj.name == weaponDict[id][0]:
-          print('Heal item already present')
-          print()
-          return
+      # for obj in self.inventory:
+      #   if obj.name == weaponDict[id][0]:
+      #     print('Heal item already present')
+      #     print()
+      #     return
 
       self.inventory.append(Tool(id, 'Medkit', 'Heal'))
       print()
-      self.coins -= weaponDict[id][1]#deduct
+      self.coins -= healPrice#deduct
       print(f'Item {self.inventory[len(self.inventory) - 1].name} purchased. Current Coin balance : {self.coins} units')
       print()
 
@@ -179,7 +181,7 @@ class Human:
     shop.stock[id] += 1 
     print('The item has been restocked.')
   
-  def healSelf():
+  def healSelf(self):
     
     ind = 0
     for ob in self.inventory:
