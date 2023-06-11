@@ -21,9 +21,9 @@ Attack() to attack human. TakeDamage() will be exposed, as the health attribute 
 
 
 3. Tools(price, damage caused, durability) -
-  Tools can be of type 'gadgets', 'utensils', 'weapons', 'med kit'.'Knife'(50 price, deals 100 damage) and 'Axe'(99 price, deals 150 damage) are weapons. After each use the durability of tools should be reduced, design a func for the same.
+  Tools can be of type 'Weapon' or 'Heal'.'Knife'(50 price, deals 100 damage) and 'Axe'(99 price, deals 150 damage) are weapons. After each use the durability of tools should be reduced, design a func for the same.
 
-4. Shop(Composed of Items) - a list of (quantity, items). Implement restock function. Restock(val, obj) should accept value and tool(object) to be restocked from human, if sufficient value is given, the tool should be restocked. 
+4. Shop(Composed of Items) - a list of (quantity, items). Implement restock function. Restock(val, obj) should accept value and tool(object) to be restocked by Human, if sufficient value is given, the tool should be restocked. 
 
  **Class Diagram**
   
@@ -51,8 +51,8 @@ The Game will be developed as per below instructions.
 
 | Development Item     | Status |
 | ----------- | ----------- |
-| Develop classes as per above definitions.      | In-progress      |
-|Run a day and night swap loop. 5mins day, 5mins night. Spawn enemies at night. Enemies will deal constant damage per minute. Human has to kill enemies to surview.  | -        |
-| After death of an enemy, coins will be added to the human's a/c. If user doesn't kill enemy and survives damage, no coins will be added. the enemies will disappear in the day, if not killed. | - |
-|The user may purchase 'med kit' to heal | - |
-|Goal will be maximize coins and buy the 'sword' till the 3rd night to kill the boss. Spawn the boss Dracula on the 3rd night. If Human survives, Declare 'Winner'. End Game.| -|
+| Develop classes as per above definitions.      | Completed     |
+|Run a day and night swap loop. 5mins day, 5mins night. Spawn enemies at night. Enemies will deal constant damage per minute. Human has to kill enemies to surview.  | In-progress      |
+| After death of an enemy, coins will be added to the human's a/c. If user doesn't kill enemy and survives damage, no coins will be added. the enemies will disappear in the day, if not killed. | Completed |
+|The user may purchase 'med kit' to heal | Completed |
+|Goal will be maximize coins and buy the 'sword' till the 3rd night to kill the boss. Spawn the boss Dracula on the 3rd night. If Human survives, Declare 'Winner'. End Game.| In-progress|
