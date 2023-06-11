@@ -27,7 +27,7 @@ Attack() to attack human. TakeDamage() will be exposed, as the health attribute 
 
  **Class Diagram**
   
- ![Class Diagram](/RPGClassDiagram.png "CD")
+ ![Class Diagram](/RPG-Class-Diagram.png "CD")
 
 ### Current Folder Structure
 The root folder contains test.py file. To test classes/objects and their methods. 
