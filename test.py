@@ -74,10 +74,12 @@ time.sleep(1)
 print('Use the item you just purchased to destroy the zombie.')
 op = input('Press a to attack: ')
 if op == 'a' or op == 'A':
-  while z.getHealth() > 0:
+  while z.getHealth() > 0 and len(player.inventory) != 0:
     player.Attack(z)
+  if len(player.inventory) == 0 and z.getHealth() > 0:
+    print('As you don\'t have items in your inventory we have despawned the zombie!\n')
 else:
-  print('Uh oh you pressed the wrong key. Anyways, we have de-spawned the Zombie for you')
+  print('Uh oh you pressed the wrong key. Anyways, we have de-spawned the Zombie for you\n')
 
 print()
 time.sleep(1)
@@ -106,12 +108,7 @@ else:
   player.PurchaseFromShop(shop)
   while v.getHealth() > 0:
     player.Attack(v)
-  print(f'CONGRATULATIONS on WINNING! {player.name} you really are a hero!\nGame Duration: {time.time() - gmv.start}')
-
-
-
-
-
+  print(f'CONGRATULATIONS on WINNING! {player.name} you really are a hero!\nGame Duration: {time.time() - gmv.start} secs')
 
 
 
